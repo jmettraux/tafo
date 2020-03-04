@@ -36,6 +36,6 @@ puts(
       '' << ([ 'INSERT INTO', 'UPDATE', 'DELETE' ].include?(m) ? (BRI + LGN) : GRN) << m << RES
     }
   else
-    l
+    l.gsub(/error|exception|fail/i) { |m| '' << (BRI + RED) << m << RES }
   end)
 
