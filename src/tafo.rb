@@ -32,10 +32,10 @@ puts(
       '' << (%w[ 2 3 ].include?($5[0, 1]) ? GRN : RED) + $5
     '' << $1 << meth << S << YEL << $3 << S << WHT << $4 << S << code << S << RES << $6
   when /[ (](SELECT|INSERT INTO|UPDATE|DELETE|BEGIN|COMMIT) /
-    l.gsub(/SELECT|INSERT INTO|UPDATE|DELETE|INNER JOIN|LEFT OUTER JOIN|ORDER BY|SET|FROM|VALUES|WHERE|ON|AND|OR|IS|AS|CAST|LIKE|DESC|LIMIT \d+|BEGIN|COMMIT|GROUP BY/) { |m|
-      '' << ([ 'INSERT INTO', 'UPDATE', 'DELETE' ].include?(m) ? (BRI + LGN) : GRN) << m << RES
-    }
+    l.gsub(/SELECT|INSERT INTO|UPDATE|DELETE|INNER JOIN|LEFT OUTER JOIN|ORDER BY|SET|FROM|VALUES|WHERE|ON |AND |OR |IS |IN |NOT |NULL|AS |CAST|LIKE|DESC|LIMIT \d+|BEGIN|COMMIT|GROUP BY/) { |m|
+      '' << ([ 'INSERT INTO', 'UPDATE', 'DELETE' ].include?(m) ? (BRI + LGN) : GRN) << m << RES }
   else
-    l.gsub(/error|exception|fail/i) { |m| '' << (BRI + RED) << m << RES }
+    l.gsub(/[a-z0-9]*error|[a-z0-9]*exception|fail(ed|ure|ing)?|warn(ing)?/i) { |m|
+      '' << (BRI + RED) << m << RES }
   end)
 
