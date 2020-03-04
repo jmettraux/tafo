@@ -8,6 +8,6 @@
 
 SELF=`readlink $0`
 
-#tail -f $1 | ruby -n $SELF.rb
-cat $1 | ruby -n $SELF.rb
+tail -f $1 | ruby -n $SELF.rb
+#cat $1 | ruby -n $SELF.rb
 
