@@ -1,0 +1,13 @@
+#! /usr/bin/env sh
+
+#
+# src/tafo
+#
+# vim: set ft=sh:
+#
+
+SELF=`readlink $0`
+
+#tail -f $1 | ruby -n $SELF.rb
+cat $1 | ruby -n $SELF.rb
+
