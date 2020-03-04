@@ -7,7 +7,15 @@
 #
 
 SELF=`readlink $0`
+N=`basename "$0"`
 
-tail -f $1 | ruby -n $SELF.rb
-#cat $1 | ruby -n $SELF.rb
+if test "$N" = "tafo"; then
+  tail -f $1 | ruby -n $SELF.rb
+elif test "$N" = "taca"; then
+  cat $1 | ruby -n $SELF.rb
+elif test "$N" = "tale"; then
+  cat $1 | ruby -n $SELF.rb | less -R
+else
+  echo "what do you mean by \"$N\"?"
+fi
 
