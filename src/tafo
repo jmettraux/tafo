@@ -9,12 +9,17 @@
 SELF=`readlink $0`
 N=`basename "$0"`
 
+RUBY=ruby
+if ! which $RUBY; then
+  RUBY=`find /usr/local/bin -name "ruby*" | sort | tail -1`
+fi
+
 if test "$N" = "tafo"; then
-  tail -f $1 | ruby -n $SELF.rb
+  tail -f $1 | $RUBY -n $SELF.rb
 elif test "$N" = "taca"; then
-  cat $1 | ruby -n $SELF.rb
+  cat $1 | $RUBY -n $SELF.rb
 elif test "$N" = "tale" || test "$N" = "tamo"; then
-  cat $1 | ruby -n $SELF.rb | less -R
+  cat $1 | $RUBY -n $SELF.rb | less -R
 else
   echo "what do you mean by \"$N\"?"
 fi
