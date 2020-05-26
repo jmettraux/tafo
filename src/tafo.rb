@@ -33,7 +33,7 @@ puts(
     '' << $1 << meth << S << YEL << $3 << S << WHT << $4 << S << code << S << RES << $6
   when /[ (](SELECT|INSERT INTO|UPDATE|DELETE|BEGIN|COMMIT) /
     l
-      .gsub(/SELECT|INSERT INTO|UPDATE|DELETE|(LEFT )?(INNER |OUTER )?JOIN |UNION (ALL )?|ORDER BY|SET|FROM|VALUES|WHERE|ON |AND |OR |IS |IN |NOT |NULL|AS |CAST|LIKE|DESC|LIMIT \d+|BEGIN|COMMIT|GROUP BY/) { |m|
+      .gsub(/ SELECT| INSERT INTO| UPDATE| DELETE|(LEFT )?(INNER |OUTER )?JOIN |UNION (ALL )?|ORDER BY|SET|FROM|VALUES|WHERE|ON |AND |OR |IS |IN |NOT |NULL|AS |CAST|LIKE|DESC|LIMIT \d+|BEGIN|COMMIT|GROUP BY/) { |m|
         '' << ([ 'INSERT INTO', 'UPDATE', 'DELETE' ].include?(m) ?  (BRI + LGN) : GRN) << m << RES }
       .gsub(/ \((\d+\.\d+)s\) /) { |m|
         ' (' << ($1.to_f < 0.2 ? $1 : (BRI + RED) + $1 + RES) << 's) ' }
