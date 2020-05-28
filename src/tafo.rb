@@ -31,6 +31,12 @@ puts(
     code =
       '' << (%w[ 2 3 ].include?($5[0, 1]) ? GRN : RED) + $5
     '' << $1 << meth << S << YEL << $3 << S << WHT << $4 << S << code << S << RES << $6
+  when /^(.+)(GET|PUT|POST|DELETE|HEAD) ([^ ]+) " (\d{3}) (.+)$/
+    meth =
+      '' << (%w[ PUT POST DELETE ].include?($2) ? BRI : '') << YEL << $2 << RES
+    code =
+      '' << (%w[ 2 3 ].include?($4[0, 1]) ? GRN : RED) + $4
+    '' << $1 << meth << S << YEL << $3 << S << WHT << '"' << S << code << S << RES << $5
   when /[ (](SELECT|INSERT INTO|UPDATE|DELETE|BEGIN|COMMIT) /
     l
       .gsub(/ SELECT| INSERT INTO| UPDATE| DELETE|(LEFT )?(INNER |OUTER )?JOIN |UNION (ALL )?|ORDER BY|SET|FROM|VALUES|WHERE|ON |AND |OR |IS |IN |NOT |NULL|AS |CAST|LIKE|DESC|LIMIT \d+|BEGIN|COMMIT|GROUP BY/) { |m|
