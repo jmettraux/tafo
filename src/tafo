@@ -9,10 +9,12 @@
 SELF=`readlink $0`
 N=`basename "$0"`
 
-RUBY=ruby
-if ! which $RUBY; then
-  RUBY=`find /usr/local/bin -name "ruby*" | sort | tail -1`
-fi
+#RUBY=ruby
+#if ! which $RUBY; then
+RUBY=`find /usr/local/bin -name "ruby*" | sort | tail -1`
+#fi
+
+#echo "tafo uses: $RUBY"
 
 if test "$N" = "tafo"; then
   tail -f $1 | $RUBY -n $SELF.rb
